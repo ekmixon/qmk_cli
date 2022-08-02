@@ -290,9 +290,7 @@ def int2hex(number):
 def list_devices(device_finder):
     """Show the user a nicely formatted list of devices.
     """
-    devices = device_finder.find_devices()
-
-    if devices:
+    if devices := device_finder.find_devices():
         cli.log.info('Available devices:')
         for dev in devices:
             color = LOG_COLOR['colors'][LOG_COLOR['next']]
@@ -300,9 +298,7 @@ def list_devices(device_finder):
             cli.log.info("\t%s%s:%s:%d{style_reset_all}\t%s %s", color, int2hex(dev['vendor_id']), int2hex(dev['product_id']), dev['index'], dev['manufacturer_string'], dev['product_string'])
 
     if cli.args.bootloaders:
-        bootloaders = device_finder.find_bootloaders()
-
-        if bootloaders:
+        if bootloaders := device_finder.find_bootloaders():
             cli.log.info('Available Bootloaders:')
 
             for dev in bootloaders:

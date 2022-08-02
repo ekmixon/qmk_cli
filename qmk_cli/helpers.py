@@ -19,11 +19,7 @@ def is_qmk_firmware(qmk_firmware):
         qmk_firmware / 'lib/python/qmk/cli/__init__.py'
     ]
 
-    for path in paths:
-        if not path.exists():
-            return False
-
-    return True
+    return all(path.exists() for path in paths)
 
 
 @lru_cache(maxsize=2)
@@ -40,10 +36,7 @@ def find_qmk_firmware():
 
     if 'QMK_HOME' in os.environ:
         path = Path(os.environ['QMK_HOME']).expanduser()
-        if path.exists():
-            return path.resolve()
-        return path
-
+        return path.resolve() if path.exists() else path
     return Path.home() / 'qmk_firmware'
 
 

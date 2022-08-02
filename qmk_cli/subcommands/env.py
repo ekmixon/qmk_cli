@@ -18,7 +18,7 @@ def env(cli):
 
     # Now munge the current cli config
     for key, val in cli.config.general.items():
-        converted_key = 'QMK_' + key.upper()
+        converted_key = f'QMK_{key.upper()}'
         data[converted_key] = val
 
     if cli.args.var:

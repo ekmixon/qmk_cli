@@ -1,11 +1,12 @@
 """Helpers for working with git.
 """
+
 import subprocess
 
 from milc import cli
 
 default_repo = 'qmk_firmware'
-default_fork = 'qmk/' + default_repo
+default_fork = f'qmk/{default_repo}'
 default_branch = 'master'
 
 
@@ -14,10 +15,11 @@ def git_clone(url, destination, branch):
         'git',
         'clone',
         '--recurse-submodules',
-        '--branch=' + branch,
+        f'--branch={branch}',
         url,
         str(destination),
     ]
+
     cli.log.debug('Git clone command: %s', git_clone)
 
     try:

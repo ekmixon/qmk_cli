@@ -56,7 +56,7 @@ def main():
         if 'mingw64' not in sys.executable or 'MINGW64' not in msystem:
             print('ERROR: It seems you are not using the MINGW64 terminal.')
             print('Please close this terminal and open a new MSYS2 MinGW 64-bit terminal.')
-            print('Python: %s, MSYSTEM: %s' % (sys.executable, msystem))
+            print(f'Python: {sys.executable}, MSYSTEM: {msystem}')
             exit(1)
 
     # Environment setup

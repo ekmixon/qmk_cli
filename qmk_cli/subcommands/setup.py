@@ -1,5 +1,6 @@
 """Setup qmk_firmware on your computer.
 """
+
 import os
 import shlex
 import subprocess
@@ -13,7 +14,7 @@ from qmk_cli.helpers import is_qmk_firmware
 
 default_base = 'https://github.com'
 default_repo = 'qmk_firmware'
-default_fork = 'qmk/' + default_repo
+default_fork = f'qmk/{default_repo}'
 default_branch = 'master'
 
 
@@ -45,10 +46,10 @@ def git_upstream(destination):
 
 @cli.argument('-n', '--no', arg_only=True, action='store_true', help='Answer no to all questions')
 @cli.argument('-y', '--yes', arg_only=True, action='store_true', help='Answer yes to all questions')
-@cli.argument('--baseurl', default=default_base, help='The URL all git operations start from. Default: %s' % default_base)
-@cli.argument('-b', '--branch', default=default_branch, help='The branch to clone. Default: %s' % default_branch)
-@cli.argument('-H', '--home', default=Path(os.environ['QMK_HOME']), type=Path, help='The location for QMK Firmware. Default: %s' % os.environ['QMK_HOME'])
-@cli.argument('fork', default=default_fork, nargs='?', help='The qmk_firmware fork to clone. Default: %s' % default_fork)
+@cli.argument('--baseurl', default=default_base, help=f'The URL all git operations start from. Default: {default_base}')
+@cli.argument('-b', '--branch', default=default_branch, help=f'The branch to clone. Default: {default_branch}')
+@cli.argument('-H', '--home', default=Path(os.environ['QMK_HOME']), type=Path, help=f"The location for QMK Firmware. Default: {os.environ['QMK_HOME']}")
+@cli.argument('fork', default=default_fork, nargs='?', help=f'The qmk_firmware fork to clone. Default: {default_fork}')
 @cli.subcommand('Setup your computer for qmk_firmware.')
 def setup(cli):
     """Guide the user through setting up their QMK environment.
